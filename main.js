@@ -53,7 +53,7 @@ function getAllToDo() {
 
     $.ajax({
         method: "GET",
-        url: `${SERVER}/todos/:userid`
+        url: `${SERVER}/todos`
     })
         .done(response => {
             let no = 1
@@ -89,49 +89,49 @@ function getAllToDo() {
         })
 }
 
-// function getMyToDo() {
-//     $('#todo-list').empty()
+function getMyToDo() {
+    $('#todo-list').empty()
 
-//     $.ajax({
-//         method: "GET",
-//         url: `${SERVER}/todos/:id`,
-//         params: {
-//             id: 
-//         }
-//     })
-//         .done(response => {
-//             let no = 1
-//             response.forEach(item => {
-//                 $('#todo-list').append(`
-//                 <tr>
-//                   <th scope="row">${no}</th>
-//                   <td>${item.title}</td>
-//                   <td>${item.description}</td>
-//                   <td>${item.status}</td>
-//                   <td>${item.dueDate}</td>
-//                 </tr>
-//                 `)
-//                 no++;
-//             })
+    $.ajax({
+        method: "GET",
+        url: `${SERVER}/todos/:userid`,
+        params: {
+            id: 
+        }
+    })
+        .done(response => {
+            let no = 1
+            response.forEach(item => {
+                $('#todo-list').append(`
+                <tr>
+                  <th scope="row">${no}</th>
+                  <td>${item.title}</td>
+                  <td>${item.description}</td>
+                  <td>${item.status}</td>
+                  <td>${item.dueDate}</td>
+                </tr>
+                `)
+                no++;
+            })
 
-//             //Show
-//             navbarLogin()
-//             $('#all-todo-list-section').show()
+            //Show
+            navbarLogin()
+            $('#all-todo-list-section').show()
 
-//             //Hide
-//             $('#home-section').hide()
-//             $('#login-section').hide()
-//             $('#register-section').hide()
-//             $('#create-todo-section').hide()
-//         })
-//         .fail((xhr, error, status) => {
-//             console.log('fail')
-//             console.log(xhr.responseJSON, status, error)
-//         })
-//         .always((response) => {
-//             console.log('always')
-//         })
-// }
+            //Hide
+            $('#home-section').hide()
+            $('#login-section').hide()
+            $('#register-section').hide()
+            $('#create-todo-section').hide()
+        })
+        .fail((xhr, error, status) => {
+            console.log('fail')
+            console.log(xhr.responseJSON, status, error)
+        })
+        .always((response) => {
+            console.log('always')
+        })
+}
 
 //AJAX
 $(document).ready(() => {
