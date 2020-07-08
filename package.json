@@ -1,0 +1,21 @@
+{
+  "name": "fancy-todo-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeeS17/FancyTodo-Client.git"
+  },
+  "keywords": [],
+  "author": "Daniel Soerjonoto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeeS17/FancyTodo-Client/issues"
+  },
+  "homepage": "https://github.com/DeeS17/FancyTodo-Client#readme",
+  "dependencies": {}
+}
