@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="143341866244-ns1antu2bs21vprenfkt51bo1qb34kks.apps.googleusercontent.com">
     <title>Fancy To Do Application</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -22,10 +23,10 @@
             border: 0px;
         }
 
-        #all-todo-list-section {
+        .list-table {
             position: relative;
             margin: auto auto;
-            width: 60%;
+            width: 80%;
         }
 
         .container {
@@ -106,6 +107,7 @@
                 <input type="password" class="form-control" id="login-password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <br><div class="g-signin2" data-onsuccess="onSignIn"></div>
         </form>
     </div>
 
@@ -132,7 +134,7 @@
 
     <!-- All To Do List -->
     <br>
-    <div id="all-todo-list-section">
+    <div id="all-todo-list-section" class="list-table">
         <h1 class="display-4">All Users To Do List</h1>
         <hr class="my-4">
         <table class="table table-bordered table-hover">
@@ -179,7 +181,7 @@
 
     <!-- My To Do List -->
     <br>
-    <div id="my-todo-list-section">
+    <div id="my-todo-list-section" class="list-table">
         <h1 class="display-4">My To Do List</h1>
         <hr class="my-4">
         <table class="table table-bordered table-hover">
@@ -190,6 +192,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
                     <th scope="col">Due Date</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody id="my-todo-list">
@@ -197,6 +200,37 @@
         </table>
     </div>
 
+    <!-- Edit To Do -->
+    <br>
+    <div id="edit-todo-section" class="container">
+        <h1 class="display-4">Edit To Do</h1>
+        <hr class="my-4">
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="edit-title">Title</label>
+                <input type="text" class="form-control" id="edit-title">
+            </div>
+            <div class="form-group">
+                <label for="edit-description">Description</label>
+                <input type="text" class="form-control" id="edit-description">
+            </div>
+            <div class="form-group">
+                <label for="edit-status">Status</label>
+                <input type="text" class="form-control" id="edit-status">
+            </div>
+            <div class="form-group">
+                <label for="edit-duedate">Due Date</label>
+                <input type="date" class="form-control" id="edit-duedate">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <!-- Google OAuth -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Bootstrap CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
