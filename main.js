@@ -207,14 +207,15 @@ function weather() {
     .always((response) => {
     })
 }
+
 function quotes() {
 
   $.ajax({
     method: 'GET',
-    url: `${SERVER_PATH}/quotes`,
+    url: `${SERVER_PATH}/quote`,
   })
     .done((response) => {
-      console.log(response);
+      console.log(response.result);
       $('#quote').append(
         `<p>${response}</p>`
       )
@@ -223,6 +224,7 @@ function quotes() {
       console.log(response.responseText);
     })
     .always((response) => {
+      console.log(response);
     })
 }
 
