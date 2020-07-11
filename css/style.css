@@ -1,12 +1,35 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Patrick+Hand&display=swap');
+
 html{
     position: relative;
 }
 
 body {
-    background-image: url(../img/bg.jpg);
+    background-image: url(../img/bg3.jpg);
     background-attachment: fixed;
     background-size: cover;
     margin-bottom: 100px;
+}
+
+.button-i{
+    font-weight: 900; 
+    font-size: 28px; 
+    float: right;
+
+}
+
+.subjudul{
+    color: white; 
+    font-weight: 900; 
+    font-size: 46px; 
+    letter-spacing: 8px;
+}
+
+.ketengah{
+    
+    margin: 100px auto;
+    padding: 30px 25px; 
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
 }
 
 .navbar-brand {
@@ -14,3 +37,31 @@ body {
     font-weight: 900;
     font-size: 24px;
 }
+
+.form{
+    background-color: rgba(0, 0, 0, 0.842);
+    padding: 30px 20px; 
+    font-family: 'Patrick Hand', cursive;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.form input, .form textarea{
+    background-color: transparent;
+    
+    border-bottom: 3px solid tomato;
+
+    background-color:rgba(255, 99, 71, 0.363); 
+    border-top: 0; 
+    border-right: 0; 
+    border-left: 0;
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
+} */
+
+.card {
+    margin-bottom: 30px;
+}
+

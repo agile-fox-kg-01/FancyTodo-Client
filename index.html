@@ -11,6 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="./css/style.css">
+
     <title>Fancy Todo SPA</title>
   </head>
   <body id="body">
@@ -44,10 +46,11 @@
         <div class="row">
           <div class="col-sm-8 offset-sm-2">
 
-            <h3>Login Form</h3>
-            <div id="login-error"></div>
             
-            <form id="login-form">
+            
+            <form id="login-form" class="form">
+              <h3 class="subjudul">Login Form</h3>
+              <div id="login-error"></div>
               <div class="form-group">
                 <label for="email-login">Email address</label>
                 <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp">
@@ -74,8 +77,9 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-8 offset-sm-2">
-            <h3>Register Form</h3>
-            <form id="registrasi-form">
+            
+            <form id="registrasi-form" class="form">
+              <h3 class="subjudul">Register Form</h3>
               <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="ex : ichlasul0899@gmail.com"> 
@@ -104,7 +108,7 @@
         <div class="row">
           <div class="col-sm-8 offset-sm-2">
             <h3>What do you want to do ?</h3>
-            <form id="form-create">
+            <form id="form-create" class="form">
               <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" placeholder="Ex : Meeting With Your Friend">
@@ -137,18 +141,23 @@
             </form>
 
             <!-- READ : LIST -->
-
-            <h3 style="margin-top: 60px;">List Todo</h3>
-            <div class="col-sm-4" id="list-todo">
-              <!-- Nanti isi nya di append oleh jquery -->
-              <!-- Saat logout isinys di hapus -->
+            <div id="list-todo-page">
+              <h3 style="margin-top: 60px;" >List Todo</h3>
+              <div class="row" id="list-todo">
+                <!-- Nanti isi nya di append oleh jquery -->
+                <!-- Saat logout isinys di hapus -->
+              </div>
+              
             </div>
+            
 
 
           </div>
         </div>
       </div>
     </section>
+
+    
 
 
     <!-- UPDATE -->
@@ -185,19 +194,6 @@
                   <input type="date" class="form-control" id="due_date-update">
                 </div>
               </div>
-
-
-
-              <div class="form-group">
-                <label for="due_date-update">Due Date</label>
-                <input type="text" class="form-control" id="due_date-update">
-              </div>
-              <div class="form-group">
-                <label for="place-update">Place</label>
-                <select id="place-update" class="form-control">
-                  <option selected>Choose...</option>
-                </select>
-              </div>
               <button type="submit" class="btn btn-primary">Update</button>
               <a id="back-to-home" href="" class="btn btn-outline-primary">Cancel</a>
             </form>
@@ -214,6 +210,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+    <script src="js/jquery.easing.1.3.js"></script>
     <!-- jQueryLocal -->
     <script src="./main.js"></script>
 

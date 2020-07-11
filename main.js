@@ -14,15 +14,18 @@ function fetchData(){
             console.log(response)
             response.forEach(todo => {
                 $('#list-todo').append(`
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${todo.title}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Status: ${todo.status}</h6>
-                        <p class="card-text">${todo.description}</p>
-                        <p class="card-text">${todo.place}</p>
-                        <p class="card-text">${todo.due_date}</p>
-                        <button id="update-${todo.id}" class="btn btn-primary">Edit</button>
-                        <button id="delete-${todo.id}" class="btn btn-danger">Delete</button>
+                
+                <div class="col-sm-5">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${todo.title}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Status: ${todo.status}</h6>
+                            <p class="card-text">${todo.description}</p>
+                            <p class="card-text">${todo.place}</p>
+                            <p class="card-text">${todo.due_date}</p>
+                            <button id="update-${todo.id}" class="btn btn-primary">Edit</button>
+                            <button id="delete-${todo.id}" class="btn btn-danger">Delete</button>
+                        </div>
                     </div>
                 </div>
                 `)
@@ -480,48 +483,23 @@ $(document).ready( function(){
         
         
 
-    $(window).scroll(function() {
-        var wScroll = $(this).scrollTop();
-        // console.log(wScroll)
-        $('.jumbotron img').css({
-            'transform' : 'translate(0px, '+wScroll/4+'%)'
-        });
+    //even pada saat page scrool di klik
+    $('.page-scroll').on('click', function(e){
+        //ambil isi href
+        let tujuan = $(this).attr('href');
+        //tangkap elemen yang bersangkutan
+        var elemenTujuan = $(tujuan);
         
-        $('.jumbotron h1').css({
-            'transform' : 'translate(0px, '+wScroll/2+'%)'
-        });
-        
-        $('.jumbotron p').css({
-            'transform' : 'translate(0px, '+wScroll+'%)'
-        });
-    
-        // portfolio
-        if(wScroll > $('.portfolio').offset().top - 200) {
-            // console.log('ok')
-            $('.portfolio .thumbnail').each(function(i) {
-                setTimeout(function(){
-                    $('.portfolio .thumbnail').eq(i).addClass('muncul')
-                }, 300 * (i+1))
-            })
-        }
-        
+        // Animasi
+        $('html,body').animate({
+            scrollTop: elemenTujuan.offset().top - 50
+        }, 1000, 'easeInOutExpo');
+
+        // Membajak fungsi href supaya ga pindah ke tujuan
+        e.preventDefault();
+
+        // Swing dan Linear yang jquery punya atau Cari Jquery Easing
+
     });
     
-
-    
-    
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
 })
