@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="143341866244-ns1antu2bs21vprenfkt51bo1qb34kks.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="143341866244-ns1antu2bs21vprenfkt51bo1qb34kks.apps.googleusercontent.com">
     <title>Fancy To Do Application</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -83,12 +84,18 @@
         </div>
     </nav>
 
+    <!-- Alert -->
+
+    <br>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong id="error-message"></strong>
+    </div>
+
     <!-- Homepage -->
     <div id="home-section" class="jumbotron">
         <h1 class="display-4">Hi, Welcome to Fancy To Do App!</h1>
         <p class="lead">Please login or register to use our features.</p>
         <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
     </div>
 
     <!-- Login -->
@@ -107,7 +114,8 @@
                 <input type="password" class="form-control" id="login-password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <br><div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <br>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </form>
     </div>
 
@@ -162,6 +170,9 @@
             <div class="form-group">
                 <label for="create-title">Title</label>
                 <input type="text" class="form-control" id="create-title">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Try to fill the title with: "bored" !
+                </small>
             </div>
             <div class="form-group">
                 <label for="create-description">Description</label>
@@ -199,6 +210,20 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Send To Do -->
+    <div id="send-mail-section" class="container">
+        <h1 class="display-4">Send my To Do Detail</h1>
+        <hr class="my-4">
+        <form id="send-mail-form">
+            <div class="form-group">
+                <label for="edit-title">My Email</label>
+                <input type="text" class="form-control" id="target-email">
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+
 
     <!-- Edit To Do -->
     <br>

@@ -59,6 +59,8 @@ function isLogin() {
         $('#register-section').hide()
         $('#create-todo-section').hide()
         $('#edit-todo-section').hide()
+        $('.alert').hide()
+        $('#send-mail-section').hide()
     } else {
         navbarGuest()
         $('#home-section').show()
@@ -68,6 +70,8 @@ function isLogin() {
         $('#all-todo-list-section').hide()
         $('#create-todo-section').hide()
         $('#edit-todo-section').hide()
+        $('.alert').hide()
+        $('#send-mail-section').hide()
     }
 }
 
@@ -148,6 +152,7 @@ function getMyToDo() {
                   <div class="btn-group" role="group">
                   <button type="button" class="btn btn-primary" id="edit-${item.id}">Edit</button>
                   <button type="button" class="btn btn-primary" id="delete-${item.id}">Delete</button>
+                  <button type="button" class="btn btn-primary" id="send-${item.id}">Send</button>
                   </div>
                   </td>
                 </tr>
@@ -163,6 +168,11 @@ function getMyToDo() {
                 $(`#delete-${item.id}`).click((event) => {
                     deleteToDo(item.id)
                 })
+
+                //Send Button
+                $(`#send-${item.id}`).click((event) => {
+                    sendToDo(item.id)
+                })
             })
 
             //Show
@@ -175,6 +185,8 @@ function getMyToDo() {
             $('#login-section').hide()
             $('#register-section').hide()
             $('#create-todo-section').hide()
+            $('#edit-todo-section').hide()
+            $('#send-mail-section').hide()
 
         })
         .fail((xhr, error, status) => {
@@ -184,6 +196,59 @@ function getMyToDo() {
         .always((response) => {
             console.log('always')
         })
+}
+
+function sendToDo(id) {
+    //Show
+    navbarLogin()
+    $('#send-mail-section').show()
+
+    //Hide
+    $('#my-todo-list-section').hide()
+    $('#all-todo-list-section').hide()
+    $('#home-section').hide()
+    $('#login-section').hide()
+    $('#register-section').hide()
+    $('#create-todo-section').hide()
+
+    
+    $('#send-mail-form').submit(event => {
+        let targetEmail = $('#target-email').val()
+
+        $.ajax({
+            method: "POST",
+            url: `${SERVER}/todos/email/${id}`,
+            data: {
+                email: targetEmail
+            },
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+            .done(response => {
+                console.log("success")
+                
+                //Show
+                navbarLogin()
+                $('#my-todo-list-section').show()
+
+                //Hide
+                $('#all-todo-list-section').hide()
+                $('#home-section').hide()
+                $('#login-section').hide()
+                $('#register-section').hide()
+                $('#create-todo-section').hide()
+                $('#edit-todo-section').hide()
+            })
+            .fail((xhr, error, status) => {
+                showAlert(xhr.responseJSON.message)
+                console.log(xhr.responseJSON, status, error)
+            })
+            .always((response) => {
+                console.log('always')
+            })
+    })
+    event.preventDefault()
 }
 
 function getEditToDo(id) {
@@ -215,6 +280,7 @@ function getEditToDo(id) {
             //Post Edit
             $('#edit-todo-section').submit((event) => {
                 putEditToDo(id)
+                event.preventDefault()
             })
 
             //Hide
@@ -224,6 +290,8 @@ function getEditToDo(id) {
             $('#login-section').hide()
             $('#register-section').hide()
             $('#create-todo-section').hide()
+            $('#send-mail-section').hide()
+
         })
         .fail((xhr, error, status) => {
             console.log('fail')
@@ -258,7 +326,7 @@ function putEditToDo(id) {
             isLogin()
         })
         .fail((xhr, error, status) => {
-            console.log('fail')
+            showAlert(xhr.responseJSON.message)
             console.log(xhr.responseJSON, status, error)
         })
         .always((response) => {
@@ -321,6 +389,16 @@ function googleSignOut() {
     });
 }
 
+function showAlert(msg) {
+    $('#error-message').text("")
+    if (typeof msg === "object") {
+        $('#error-message').text(msg.join(" "))
+    } else {
+        $('#error-message').text(msg)
+    }
+    $('.alert').show()
+}
+
 //AJAX
 $(document).ready(() => {
     //Homepage
@@ -344,6 +422,7 @@ $(document).ready(() => {
         $('#all-todo-list-section').hide()
         $('#create-todo-section').hide()
         $('#edit-todo-section').hide()
+        $('#send-mail-section').hide()
 
         event.preventDefault()
     })
@@ -360,6 +439,7 @@ $(document).ready(() => {
         $('#all-todo-list-section').hide()
         $('#create-todo-section').hide()
         $('#edit-todo-section').hide()
+        $('#send-mail-section').hide()
 
         event.preventDefault()
     })
@@ -382,6 +462,7 @@ $(document).ready(() => {
         $('#register-section').hide()
         $('#all-todo-list-section').hide()
         $('#edit-todo-section').hide()
+        $('#send-mail-section').hide()
 
         event.preventDefault()
     })
@@ -411,8 +492,8 @@ $(document).ready(() => {
                 isLogin()
             })
             .fail((xhr, error, status) => {
-                console.log('fail')
-                console.log(xhr.responseJSON, status, error)
+                showAlert(xhr.responseJSON.message)
+                console.log(xhr.responseJSON.message)
             })
             .always((response) => {
                 console.log(response)
@@ -439,8 +520,8 @@ $(document).ready(() => {
                 isLogin()
             })
             .fail((xhr, error, status) => {
-                console.log('fail')
-                console.log(xhr.responseJSON, status, error)
+                showAlert(xhr.responseJSON.message)
+                console.log(xhr.responseJSON.message)
             })
             .always((response) => {
                 console.log('always')
@@ -480,7 +561,7 @@ $(document).ready(() => {
                 isLogin()
             })
             .fail((xhr, error, status) => {
-                console.log('fail')
+                showAlert(xhr.responseJSON.message)
                 console.log(xhr.responseJSON, status, error)
             })
             .always((response) => {
