@@ -5,11 +5,13 @@ if (!localStorage.getItem('token')) {
   $(document).ready(() => {
     homeUnlogin()
     weather()
+    quotes()
   })
 } else {
   $(document).ready(() => {
     homeLoggedin()
     weather()
+    quotes()
   })
 }
 
@@ -194,6 +196,7 @@ function weather() {
     url: `${SERVER_PATH}/weathers`,
   })
     .done((response) => {
+      console.log(response);
       $('#weather').append(
         `<h5>${response.output}</h5>`
       )
@@ -203,18 +206,17 @@ function weather() {
     })
     .always((response) => {
     })
-
-  event.preventDefault()
 }
-function weather() {
+function quotes() {
 
   $.ajax({
     method: 'GET',
     url: `${SERVER_PATH}/quotes`,
   })
     .done((response) => {
+      console.log(response);
       $('#quote').append(
-        `<p>${response.result}</p>`
+        `<p>${response}</p>`
       )
     })
     .fail((response) => {
@@ -222,8 +224,6 @@ function weather() {
     })
     .always((response) => {
     })
-
-  event.preventDefault()
 }
 
 function done(id) {
