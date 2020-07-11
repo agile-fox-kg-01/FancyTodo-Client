@@ -1,0 +1,24 @@
+.carousel-item img {
+    padding: 5px;
+    width: 800px;
+    height: 400px;
+    margin: 10px;
+    line-height: 20px;
+}
+
+#headline {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#add-button {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
