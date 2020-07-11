@@ -1,0 +1,16 @@
+html{
+    position: relative;
+}
+
+body {
+    background-image: url(../img/bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    margin-bottom: 100px;
+}
+
+.navbar-brand {
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 900;
+    font-size: 24px;
+}
