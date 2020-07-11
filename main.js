@@ -11,8 +11,8 @@ function fetchData() {
         }
     })
         .done((response) => {
-            console.log(`done`);
-            console.log(response);
+            // console.log(`done`);
+            // console.log(response);
             response.forEach(todo => {
                 $(`#table-list-todo`).append(
                     `<tr>
@@ -27,12 +27,12 @@ function fetchData() {
             })
         })
         .fail((xhr, status, error) => {
-            console.log(`fail`)
-            console.log(xhr.responseJSON, status, error)
+            // console.log(`fail`)
+            // console.log(xhr.responseJSON, status, error)
         })
         .always((response) => {
-            console.log(`response`)
-            console.log(response)
+            // console.log(`response`)
+            // console.log(response)
         })
 }
 
@@ -48,6 +48,11 @@ function afterLoginSubmit() {
 
     $('#todo-list-nav').show()
     $('#list-todo-page').show()
+
+    $('#ghibli-nav').show()
+    $('#list-ghibli-movies-page').hide()
+
+    $(`#update-todo-page`).hide()
 
     $('#logout-nav').show()
 
@@ -66,11 +71,13 @@ function afterLogoutSubmit() {
     $('#todo-list-nav').hide()
     $('#todo-create-nav').hide()
 
-
     $('#create-todo-page').hide()
     $('#list-todo-page').hide()
 
     $(`#update-todo-page`).hide()
+
+    $('#ghibli-nav').hide()
+    $('#list-ghibli-movies-page').hide()
 
     $('#logout-nav').hide()
 }
@@ -89,18 +96,24 @@ function onSignIn(googleUser) {
         }
     })
         .done(response => {
-            console.log(`done`, response)
+            // console.log(`done`, response)
             const token = response.token;
             localStorage.setItem('token', token)
             afterLoginSubmit()
         })
         .fail(response => {
-            console.log(`fail`, response.responseJSON)
+            // console.log(`fail`, response.responseJSON)
             $(`#login-error`).remove()
-            $(`#form-login`).before(`<p id="login-error" style="color: red;">${response.responseJSON.errors}</p>`)
+            $(`#form-login`).before(`
+            <div id="login-error" class="alert alert-danger" role="alert">
+            ${response.responseJSON.errors}
+            </div>
+            `)
+            googleSignOut()
+
         })
         .always(response => {
-            console.log(`always`, response)
+            // console.log(`always`, response)
         })
 }
 
@@ -155,8 +168,8 @@ $('#register-page').submit(function (event) {
         }
     })
         .done((response) => {
-            console.log(`done`)
-            console.log(response)
+            // console.log(`done`)
+            // console.log(response)
 
             $('#login-page').show()
             $('#register-page').hide()
@@ -165,21 +178,24 @@ $('#register-page').submit(function (event) {
             $(`#password-register`).val('')
         })
         .fail((xhr, status, error) => {
-            console.log(`fail`)
-            console.log(xhr.responseJSON, status, error)
+            // console.log(`fail`)
+            // console.log(xhr.responseJSON, status, error)
 
             let errorMsg;
-            if (Array.isArray(xhr.responseJSON.errors.message)) {
-                errorMsg = xhr.responseJSON.errors.message.join(', ')
+            if (Array.isArray(xhr.responseJSON.errors)) {
+                errorMsg = xhr.responseJSON.errors.join(', ')
             } else {
-                errorMsg = xhr.responseJSON.errors.message
+                errorMsg = xhr.responseJSON.errors
             }
             $(`#register-error`).remove()
-            $(`#form-register`).before(`<p id="register-error" style="color: red;">${errorMsg}</p>`)
+            $(`#form-register`).before(`
+            <div id="register-error" class="alert alert-danger" role="alert">
+            ${errorMsg}
+                </div>`)
         })
         .always((response) => {
-            console.log(`response`)
-            console.log(response)
+            // console.log(`response`)
+            // console.log(response)
         })
 
     $(`#email-register`).val('');
@@ -204,7 +220,7 @@ $(`#login-page`).submit(function (event) {
         }
     })
         .done((response) => {
-            console.log(`done`);
+            // console.log(`done`);
             // console.log(response);
 
             localStorage.setItem('token', response.accessToken);
@@ -212,14 +228,17 @@ $(`#login-page`).submit(function (event) {
             afterLoginSubmit()
         })
         .fail((xhr, status, error) => {
-            console.log(`fail`)
-            console.log(xhr.responseJSON, status, error)
+            // console.log(`fail`)
+            // console.log(xhr.responseJSON, status, error)
 
             $(`#login-error`).remove()
-            $(`#form-login`).before(`<p id="login-error" style="color: red;">${xhr.responseJSON.errors.message}</p>`)
+            $(`#form-login`).before(`
+            <div id="login-error"  class="alert alert-danger" role="alert">
+            ${xhr.responseJSON.errors}
+            </div>`)
         })
         .always((response) => {
-            console.log(`response`)
+            // console.log(`response`)
             // console.log(response)
         })
 
@@ -241,13 +260,7 @@ $('#logout-nav').click(function (event) {
 
 $('#todo-list-nav').click(function (event) {
 
-    // console.log(`todo list nav`)
-
-    $('#create-todo-page').hide()
-    $(`#list-todo-page`).show()
-    $(`#update-todo-page`).hide()
-
-    fetchData()
+    afterLoginSubmit()
 
     event.preventDefault()
 })
@@ -260,6 +273,24 @@ $(`#todo-create-nav`).click(function (event) {
     $('#create-todo-page').show()
     $(`#list-todo-page`).hide()
     $(`#update-todo-page`).hide()
+    $(`#list-ghibli-movies-page`).hide()
+
+    $(`#form-create`).empty()
+    $(`#form-create`).append(`            
+    <div class="form-group">
+                <label class="text-white" for="title">Title</label>
+                <input type="text" class="form-control" id="title-create">
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="description">Description</label>
+                <input type="text" class="form-control" id="description-create">
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="due_date">Due Date</label>
+                <input type="date" class="form-control" id="due_date-create">
+            </div>
+            <button type="submit" class="btn btn-light">Create Todo</button>`
+    )
 
     event.preventDefault()
 })
@@ -286,36 +317,120 @@ $(`#create-todo-page`).submit(function (event) {
         }
     })
         .done(response => {
-            console.log(`done`);
-            console.log(response);
+            // console.log(`done`);
+            // console.log(response);
 
             fetchData()
             $(`#list-todo-page`).show()
             $(`#create-todo-page`).hide()
         })
         .fail((xhr, status, error) => {
-            console.log(`fail`);
-            console.log(xhr.responseJSON);
+            // console.log(`fail`);
+            // console.log(xhr.responseJSON);
 
             let errorMsg;
-            if (Array.isArray(xhr.responseJSON.errors.message)) {
-                errorMsg = xhr.responseJSON.errors.message.join(', ')
+            if (Array.isArray(xhr.responseJSON.errors)) {
+                errorMsg = xhr.responseJSON.errors.join(', ')
             } else {
-                errorMsg = xhr.responseJSON.errors.message
+                errorMsg = xhr.responseJSON.errors
             }
             $(`#create-error`).remove()
-            $(`#form-create`).before(`<p id="create-error" style="color: red;">${errorMsg}</p>`)
+            $(`#form-create`).before(`
+            <div id="create-error" class="alert alert-danger" role="alert">
+            ${errorMsg}
+            </div>
+            `)
         })
         .always(response => {
-            console.log(`response`);
-            console.log(response);
+            // console.log(`response`);
+            // console.log(response);
         })
 
     event.preventDefault()
 })
 
+$(`#ghibli-nav`).click(function (event) {
+    $('#create-todo-page').hide()
+    $(`#list-todo-page`).hide()
+    $(`#update-todo-page`).hide()
 
-//Action button after login
+    $(`#list-ghibli-movies-page`).show()
+
+    $.ajax({
+        method: `GET`,
+        url: `${SERVER_PATH}/ghibli`,
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+        .done(response => {
+            // console.log(`done`, response)
+            let i = 0
+            $(`#table-list-ghibli-movies`).empty()
+            response.forEach(movie => {
+                
+                $(`#table-list-ghibli-movies`).append(
+                    `<tr>
+                <td class="title">${movie.title}</td>
+                <td class="description">${movie.description}</td>
+                <td class="Director">${movie.director}</td>
+                <td class="Producer">${movie.producer}</td>
+                <td class="rt_score">${movie.rt_score}</td>
+                <td> <button value="${movie.title}-${movie.description}" type="button" class="btn btn-primary btn-movie" id="watch-${i}">Set Watch Reminder</button>  </td>
+            </tr>`
+                )
+
+                //line dibawah blm jd dipake karena coba beberapa kali belum berhasil jalan.
+
+                // $(`#watch-${i}`).on('click'), {title: movie.title, director: movie.director}, function (event) {
+                //     console.log(event.data.title)
+                //     console.log(`test ghibli`)
+                // }
+                // i++
+            })
+        })
+        .fail(response => {
+            console.log(`fail`, response.responseJSON)
+        })
+        .always(response => {
+            // console.log(`always`, response)
+        })
+})
+
+
+// Action button after login
+$(`#table-list-ghibli-movies`).on('click', '.btn-movie', function (event) {
+
+    const title = event.target.value.split('-')[0];
+    const description = event.target.value.split('-')[1];
+
+    // console.log(title, description)
+
+    $(`#create-error`).remove()
+
+    $('#create-todo-page').show()
+    $(`#list-todo-page`).hide()
+    $(`#update-todo-page`).hide()
+    $(`#list-ghibli-movies-page`).hide()
+
+    $(`#form-create`).empty()
+    $(`#form-create`).append(`            
+    <div class="form-group">
+                <label class="text-white" for="title">Title</label>
+                <input type="text" class="form-control" id="title-create" value="Watch ${title}" disabled>
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="description">Description</label>
+                <input type="text" class="form-control" id="description-create">
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="due_date">Due Date</label>
+                <input type="date" class="form-control" id="due_date-create">
+            </div>
+            <button type="submit" class="btn btn-light">Create Todo</button>`
+    )
+})
+
 $(`#table-list-todo`).on('click', '.btn-delete', function (event) {
 
     // console.log(event.target.value)
@@ -329,16 +444,16 @@ $(`#table-list-todo`).on('click', '.btn-delete', function (event) {
         }
     })
         .done(response => {
-            console.log(`done`);
-            console.log(response);
+            // console.log(`done`);
+            // console.log(response);
 
             fetchData()
             $(`#list-todo-page`).show()
             $(`#create-todo-page`).hide()
         })
         .fail((xhr, status, error) => {
-            console.log(`fail`);
-            console.log(xhr.responseJSON);
+            // console.log(`fail`);
+            // console.log(xhr.responseJSON);
 
             let errorMsg;
             if (Array.isArray(xhr.responseJSON.errors.message)) {
@@ -347,11 +462,15 @@ $(`#table-list-todo`).on('click', '.btn-delete', function (event) {
                 errorMsg = xhr.responseJSON.errors.message
             }
             $(`#create-error`).remove()
-            $(`#form-create`).before(`<p id="create-error" style="color: red;">${errorMsg}</p>`)
+            $(`#form-create`).before(`
+            <div id="create-error" class="alert alert-danger" role="alert">
+            ${errorMsg}
+            </div>
+            `)
         })
         .always(response => {
-            console.log(`response`);
-            console.log(response);
+            // console.log(`response`);
+            // console.log(response);
         })
 
 
@@ -384,26 +503,26 @@ $(`#table-list-todo`).on('click', '.btn-update', function (event) {
             $(`#form-update`).append(
                 `
             <div class="form-group">
-                <label for="Id">Id</label>
+                <label for="Id" class="text-white">Id</label>
                 <input type="text" class="form-control" id="id-update" value="${todoUpdate.id}" disabled>
             </div>
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title" class="text-white">Title</label>
                 <input type="text" class="form-control" id="title-update" value="${todoUpdate.title}" required>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" class="text-white">Description</label>
                 <input type="text" class="form-control" id="description-update" value="${todoUpdate.description}" required>
             </div>
             <div class="form-group">
-                <label for="due_date">Due Date</label>
+                <label for="due_date" class="text-white">Due Date</label>
                 <input type="date" class="form-control" id="due_date-update" value="${dateFormat}" required>
             </div>
 
-            <input type="radio" name="status" value="done" ${todoUpdate.status == 'done' ? 'checked' : ''} required/> done <br />
-            <input type="radio" name="status" value="undone" ${todoUpdate.status == 'undone' ? 'checked' : ''} required/> undone <br />
+            <input type="radio" name="status" value="done" ${todoUpdate.status == 'done' ? 'checked' : ''} required/> <mark>done</mark> <br />
+            <input type="radio" name="status" value="undone" ${todoUpdate.status == 'undone' ? 'checked' : ''} required/> <mark>undone</mark> <br /> <br/>
             
-            <button type="submit" class="btn btn-primary">Update Todo</button>`
+            <button type="submit" class="btn btn-light">Update Todo</button>`
             )
         })
         .fail((xhr, status, error) => {
@@ -463,6 +582,7 @@ $(`#update-todo-page`).submit(function (event) {
             console.log(response);
         })
 })
+
 
 
 

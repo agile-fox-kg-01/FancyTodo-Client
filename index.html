@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Google Meta -->
-    <meta name="google-signin-client_id" content="140573426698-od2bl49a7q743ro71s3pjv25eccps3hi.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="140573426698-od2bl49a7q743ro71s3pjv25eccps3hi.apps.googleusercontent.com">
+    
+    <link rel="stylesheet" href="styles.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Fancy Todos App</title>
+    <title>Ghibli Todos App</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Fancy Todo App</a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand text-white" href="#">Ghibli Todo App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,20 +28,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="register-nav">Register <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="#" id="register-nav">Register <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="login-nav">Login <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="#" id="login-nav">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="todo-list-nav">List Todo <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="#" id="todo-list-nav">List Todo <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="todo-create-nav">Create Todo <span
+                    <a class="nav-link text-white" href="#" id="todo-create-nav">Create Todo <span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="logout-nav">Logout <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="#" id="ghibli-nav">Ghibli <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="#" id="logout-nav">Logout <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -48,55 +54,57 @@
 
     <!--Register  -->
     <div id="register-page" class="container">
-        <h1>Register Page</h1>
+        <h1 class="text-white">Register Page</h1>
         <form id="form-register">
             <div class="form-group">
-                <label for="email-register">Email address</label>
+                <label class="text-white" for="email-register">Email address</label>
                 <input type="email" class="form-control" id="email-register">
             </div>
             <div class="form-group">
-                <label for="password-register">Password</label>
+                <label class="text-white" for="password-register">Password</label>
                 <input type="password" class="form-control" id="password-register">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-light">Register</button>
         </form>
     </div>
 
     <!-- Login -->
     <div id="login-page" class="container">
-        <h1>Login Page</h1>
+        <h1 class="text-white">Login Page</h1>
         <form id="form-login">
             <div class="form-group">
-                <label for="email-login">Email address</label>
+                <label class="text-white" for="email-login">Email address</label>
                 <input type="email" class="form-control" id="email-login">
             </div>
             <div class="form-group">
-                <label for="password-login">Password</label>
+                <label class="text-white" for="password-login">Password</label>
                 <input type="password" class="form-control" id="password-login">
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-light">Login</button>
         </form>
-        <br>
+
+        <h5 class="text-white">or</h5>
+  
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
 
     <!-- Todos Create-->
     <div id="create-todo-page" class="container">
-        <h1>Create Todo</h1>
+        <h1 class="text-white">Create Todo</h1>
         <form id="form-create">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label class="text-white" for="title">Title</label>
                 <input type="text" class="form-control" id="title-create">
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
+                <label class="text-white" for="description">Description</label>
                 <input type="text" class="form-control" id="description-create">
             </div>
             <div class="form-group">
-                <label for="due_date">Due Date</label>
+                <label class="text-white" for="due_date">Due Date</label>
                 <input type="date" class="form-control" id="due_date-create">
             </div>
-            <button type="submit" class="btn btn-primary">Create Todo</button>
+            <button type="submit" class="btn btn-light">Create Todo</button>
         </form>
     </div>
 
@@ -120,15 +128,15 @@
             <input type="radio" name="status" value="done" /> done <br />
             <input type="radio" name="status" value="undone" /> undone <br />
 
-            <button type="submit" class="btn btn-primary">Update Todo</button>
+            <button type="submit" class="btn btn-light">Update Todo</button>
         </form>
     </div>
 
 
     <!-- Todos list-->
     <div id="list-todo-page" class="container">
-        <h1>List Todo</h1>
-        <table class="table">
+        <h1 class="text-white">List Todo</h1>
+        <table class="table bg-light">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -145,9 +153,30 @@
         </table>
     </div>
 
+
+    <!-- Ghibli Movie list-->
+    <div id="list-ghibli-movies-page" class="container table-responsive">
+        <h1 class="text-white">List Ghibli Movies</h1>
+        <table class="table bg-light">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Director</th>
+                    <th scope="col">Producer</th>
+                    <th scope="col">Rotten Tomatoes Score</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table-list-ghibli-movies">
+
+            </tbody>
+        </table>
+    </div>
+
     <!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
+
 
     <!-- JQuery 3.5.1 minified -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
