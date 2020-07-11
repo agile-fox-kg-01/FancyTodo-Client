@@ -1,0 +1,203 @@
+Pembagian pengerjaan : 
+
+Model : 
+
+User
+1. username
+2. email
+3. password
+
+Recipe
+1. 
+
+Routing nya : 
+
+1. Dokumentasi Markdown : 
+2. Rest Api -> Server : 
+3. Eror Handler -> 
+3. Client : 
+4. 3Rd Client
+
+
+
+Cara membuat Oath
+1. Setup Google, 
+Daftar client id 
+Masukkan link client di javascript autrize Uri : http://localhost:8080
+Di bagian client : Integrate Google Sigin
+Masukkan script gooogle signin : Cukup 1 aja
+masukkan meta and client id di dalam content
+masukkan function onSigin di main.js
+Jika di jalan kan maka akan menampilkan email pemilik client id di console client.
+
+2. Authenticate with a Backend Server
+ganti function signin dengan id token(rename ke google token)
+Kirim data dari client ke server kita, contoh : 
+function onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+
+    $.ajax({
+        method: 'POST',
+        url: `${SERVER_PATH}/users/login/google`,
+        headers: {
+            id_token
+        }
+    })
+    .done(response => {
+        console.log('done', response)
+    })
+    .fail(response => {
+        console.log('fail', response)
+    })
+    .always(response => {
+        console.log('always', response)
+    })
+
+}
+
+Rest Api kita atau ser kita, add routingan baru, contoh :
+==> router.post('/login/google', UserController.oauthGoogle)
+
+Dibagian controller coba tangkap :
+    // Login With Google
+    static oauthGoogle(req,res){
+        const id_token = req.headers.id_token
+        res.status(200).json({
+            id_token
+        })
+    }
+Jika ketika login mendapatkan token di console client, maka berhasil mengirim dari client ke server.
+
+Tahap selanjut nya : Baca Google Oauth Diserver
+
+npm install google-auth-library --save 
+
+buat helpers : googleOauth.js
+===================================================
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client(CLIENT_ID);
+async function verify() {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+  });
+  const payload = ticket.getPayload();
+  const userid = payload['sub'];
+  // If request specified a G Suite domain:
+  // const domain = payload['hd'];
+}
+verify().catch(console.error);
+===================================================
+
+Masukkanclient id di env 
+
+edit google oauth 
+===================================================
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client(proses.env.CLIENT_ID);
+async function verify(token) {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: proses.env.CLIENT_ID
+  });
+  const payload = ticket.getPayload();
+  
+  return payload
+}
+verify().catch(console.error);
+
+module.exports = {
+    verify
+}
+===================================================
+
+masuk ke controller user.js
+
+const {verify} =require('../helpers/googleOauth')
+
+dan 
+===================================================
+static async oauthGoogle(req,res){
+        const id_token = req.headers.id_token
+
+        try {
+            const payload = await verify(id_token)
+
+            res.status(200).json({
+                email: payload.email
+            })
+        } catch (err) {
+            res.status(500)
+        }
+        
+}
+===================================================
+ketika client login pasti di conmsole nampilin email sesuai client id
+
+tahap selanjutnya: Create atau find User dengan email tersebut
+
+simpan di env :
+GOOGLE_DEFAULT_PASSWORD=google
+
+masuk ke controller user di oauthGoogle :
+===================================================
+
+// Login With Google
+    static async oauthGoogle(req,res){
+        const id_token = req.headers.id_token
+
+        try {
+            const googlePayload = await verify(id_token)
+            const googleEmail =  googlePayload.email
+            
+            const user = await User.findOne({
+                where:{
+                    email: googleEmail
+                }
+            })
+            console.log(user)
+            if(user){
+                if(!comparePassword(process.env.GOOGLE_DEFAULT_PASSWORD, user.password)){
+                    throw 'please login via website'
+                } else {
+                    const payload = {
+                        email: user.email
+                    }
+                    const token = signToken(payload)
+    
+                    res.status(200).json(token)
+                }
+
+            } else {
+                let user = User.create({
+                    email: googleEmail,
+                    password: process.env.GOOGLE_DEFAULT_PASSWORD
+                })
+
+                const payload = {
+                    email: user.email
+                }
+                const token = signToken(payload)
+
+                res.status(201).json(token)
+            }
+            
+        } catch (err) {
+            res.status(500)
+        }
+        
+    }
+
+
+
+    Kendala : login with gmail, ternyata di database suah register with email tersebut, passwordnya berbeda
+    cara handle, mungkin passwordnya disamain dengan db di codingan, yg saya lakuin masih delete db secara mandiri
+
+===================================================
+
+Bikin button logout.
+
+Kemudian implementasikan 
+Kalau gw sih suka nya pake button logout yang udah ada, sehingga cuma di tambah isi function nya aja
