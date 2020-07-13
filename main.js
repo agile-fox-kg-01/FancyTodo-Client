@@ -108,6 +108,7 @@ async function deleteData(id) {
       )
     }
   })
+  console.log(id);
   $.ajax({
     method: 'DELETE',
     url: `${SERVER_PATH}/todos/${id}`,
@@ -235,7 +236,7 @@ function quotes() {
     .done((response) => {
       console.log(response.result);
       $('#quote').append(
-        `<p>${response}</p>`
+        ` <img id="book" src="img/book.png"><p style="font-size:13px; padding-top:7px">${response}</p>`
       )
     })
     .fail((response) => {
@@ -330,6 +331,7 @@ $('.form-login').submit((event) => {
     .done(response => {
       console.log(response.token)
       console.log(response.dataTodos)
+      $('.createTodo').show()
       showTodos(response.token)
       fetchData(response.dataTodos)
 
@@ -420,6 +422,7 @@ $('.addTodoForm').submit((event) => {
   })
     .done(response => {
       console.log(response);
+      $('.createTodo').show()
       addAndEditHide(response.dataTodos)
 
     })
@@ -441,7 +444,6 @@ $('.editTodoForm').submit((event) => {
   const description = $("#editDescription").val()
   const due_date = $("#editDue_date").val()
   const status = $("#editStatus").val()
-
   $.ajax({
     method: 'PUT',
     url: `${SERVER_PATH}/todos/${id}`,
@@ -451,6 +453,7 @@ $('.editTodoForm').submit((event) => {
     data: { title, description, due_date, status }
   })
     .done(response => {
+      $('.createTodo').show()
       showTodos(response.token)
       addAndEditHide(response.dataTodos)
 
@@ -503,5 +506,6 @@ $('#log-out').click((event) => {
 // button moreTodo (to add new Todo)
 $('.createTodo').click((event) => {
   $('.addTodoForm').show()
+  $('.createTodo').hide()
 })
 

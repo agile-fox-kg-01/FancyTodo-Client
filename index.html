@@ -33,11 +33,9 @@
     <p id="weather"></p>
   </nav>
 
-  <div id="quote">
-
-  </div>
 
   <!-- home -->
+  <div id="quote" style="color:#0f4c75;"></div>
   <div class=' div-home'>
     <header>
       <h2 class='logo'>You <strong>DO </strong> me <span> COZ </span> You <strong>LIST</strong> me
@@ -53,99 +51,97 @@
 
   <!-- form sign up -->
   <form class="form-register" id="form-sign-up">
-    <div class="form-group">
+    <div class="form-group1">
       <label for="first_name">First Name</label>
       <input type="text" class="form-control" id="first_name">
     </div>
-    <div class="form-group">
+    <div class="form-group1">
       <label for="last_name">Last Name</label>
       <input type="text" class="form-control" id="last_name">
     </div>
-    <div class="form-group">
+    <div class="form-group1">
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email">
     </div>
-    <div class="form-group">
+    <div class="form-group1">
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password">
     </div>
-    <div class="form-group">
+    <div class="form-group1">
       <label for="date_of_birth">Date Of Birth</label>
       <input type="date" class="form-control" id="date_of_birth">
     </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button id='btn-sign' type="submit" class="btn btn-primary ">Sign Up</button>
   </form>
 
   <!-- form login -->
-  <form class="form-login">
-    <div class="form-group">
-      <label for="emailLogin">Email</label>
-      <input type="email" class="form-control" id="emailLogin">
-    </div>
-    <div class="form-group">
-      <label for="passwordLogin">Password</label>
-      <input type="password" class="form-control" id="passwordLogin">
-    </div>
-    <button type="submit" class="btn btn-primary">Log In</button><br><br>
-    or <br><br>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  </form>
-
-
-  <!-- Create New Todo -->
-
+  <div id='div-login'>
+    <form id="formContent" class="form-login   w3-animate-top">
+      <div class="form-group">
+        <label for="emailLogin">Email</label>
+        <input type="email" class="form-control" id="emailLogin">
+      </div>
+      <div class="form-group">
+        <label for="passwordLogin">Password</label>
+        <input type="password" class="form-control" id="passwordLogin">
+      </div>
+      <button type="submit" class="btn btn-primary">Log In</button><br><br>
+      or <br><br>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </form>
+  </div>
 
   <!-- All Todo List -->
   <div class="todos">
     <div class="jumbotron">
-      <h1 class="display-4">My TodoList</h1>
-      <hr class="my-4">
+      <h1 class="display-4">My TodoList</h1><br>
+      <h4>what are you gonna do today?</h4><br>
       <!-- form adding -->
-      <form class='addTodoForm'>
-        <label for="title">title</label>
-        <input type="text" id="title"><br><br>
-        <label for="description">description</label>
-        <input type="text" id="description"><br><br>
-        <label for="due_date">due_date</label>
-        <input type="date" id="due_date"><br><br><br>
-        <input type="submit">
+      <form id="formAdd" class='addTodoForm'>
+        <label for="title"></label>
+        <input type="text" id="title" placeholder="title" class="addInput"><br><br>
+        <label for="description"></label>
+        <input type="text" id="description" placeholder="description" class="addInput"><br><br>
+        <label for="due_date"></label>
+        <input type="date" id="due_date" placeholder="due_date" class="addInput"><br><br><br>
+        <input style="background-color:#05dfd7" type="submit" value="add todo">
       </form>
+      <hr>
       <!-- form editing -->
       <form class='editTodoForm'>
         <input type="hidden" id="editId"><br><br>
-        <label for="editTitle">title</label>
-        <input type="text" id="editTitle"><br><br>
-        <label for="editDescription">description</label>
-        <input type="text" id="editDescription"><br><br>
-        <label for="editDue_date">due_date</label>
-        <input type="date" id="editDue_date"><br><br><br>
-        <label for="editStatus">status</label>
-        <input type="text" id="editStatus"><br><br><br>
-        <input type="submit">
+        <label for="editTitle"></label>
+        <input type="text" id="editTitle" class="addInput"><br><br>
+        <label for="editDescription"></label>
+        <input type="text" id="editDescription" class="addInput"><br><br>
+        <label for="editDue_date"></label>
+        <input type="date" id="editDue_date" class="addInput"><br><br><br>
+        <label for="editStatus"></label>
+        <input type="text" id="editStatus" class="addInput"><br><br><br>
+        <input type="submit" style="background-color:#05dfd7" value="edit todo">
       </form>
       <p class="lead">
-        <a class="btn btn-primary btn-lg createTodo" href="#" role="button">More Todo</a>
+        <a class="btn btn-primary btn-lg createTodo" href="#" role="button" style="background-color:#05dfd7">More
+          Todo</a>
       </p>
     </div>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Due Date</th>
-          <th scope="col">Done/Undone</th>
-          <th scope="col">Delete/Edit</th>
-        </tr>
-      </thead>
-      <tbody id='all-todos'></tbody>
+    <div id="table-list">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Done/Undone</th>
+            <th scope="col">Delete/Edit</th>
+          </tr>
+        </thead>
+        <tbody id='all-todos'></tbody>
+      </table>
+    </div>
 
-    </table>
   </div>
 
   <!-- booststrap -->
