@@ -14,6 +14,8 @@
   <!-- google -->
   <meta name="google-signin-client_id"
     content="1055302973797-nkf01ig3egs4vrobijrmjdehtd6c53pe.apps.googleusercontent.com">
+  <!-- sweetAlert cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
   <!-- css styles -->
   <link rel=" stylesheet" type="text/css" href="styles.css">
@@ -102,6 +104,7 @@
     <div class="jumbotron">
       <h1 class="display-4">My TodoList</h1>
       <hr class="my-4">
+      <!-- form adding -->
       <form class='addTodoForm'>
         <label for="title">title</label>
         <input type="text" id="title"><br><br>
@@ -111,6 +114,7 @@
         <input type="date" id="due_date"><br><br><br>
         <input type="submit">
       </form>
+      <!-- form editing -->
       <form class='editTodoForm'>
         <input type="hidden" id="editId"><br><br>
         <label for="editTitle">title</label>
@@ -143,12 +147,6 @@
 
     </table>
   </div>
-
-
-
-  <!-- form adding -->
-
-  <!-- form editing -->
 
   <!-- booststrap -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

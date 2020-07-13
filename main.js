@@ -1,4 +1,5 @@
 
+// const Swal = require('sweetalert2')
 const SERVER_PATH = 'http://localhost:3002'
 
 if (!localStorage.getItem('token')) {
@@ -89,7 +90,24 @@ function editData(id) {
     })
 }
 
-function deleteData(id) {
+async function deleteData(id) {
+  await Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
+  })
   $.ajax({
     method: 'DELETE',
     url: `${SERVER_PATH}/todos/${id}`,
@@ -471,6 +489,12 @@ $('#home').click((event) => {
 })
 
 $('#log-out').click((event) => {
+  Swal.fire({
+    title: 'Error!',
+    text: 'Do you want to log out',
+    icon: 'error',
+    confirmButtonText: 'yes'
+  })
   localStorage.removeItem('token')
   signOutGoogle()
   homeUnlogin()
