@@ -1,6 +1,6 @@
 // isi server side kalian
-const SERVER_PATH = 'https://aarsandi-fancytodo.herokuapp.com'
-// const WEATHER_API = 'efddb2b39b1e6a7ad4c71bdbbfe3427b'
+const SERVER_PATH = ''
+// const WEATHER_API = ''
 
 let selectedTask = null
 
