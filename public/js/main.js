@@ -1,12 +1,16 @@
 // isi server side kalian
-const SERVER_PATH = ''
-// const WEATHER_API = ''
+const SERVER_PATH = 'https://aarsandi-fancytodo.herokuapp.com'
+// const WEATHER_API = 'efddb2b39b1e6a7ad4c71bdbbfe3427b'
 
 let selectedTask = null
 
 jQuery(document).ready(() => {
     // Check if already login or not
     checkLogin()
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    
     // Form login
     $('#login-form').submit(function (event) {
         event.preventDefault()
@@ -193,8 +197,8 @@ function fetchData() {
                 <div class="col-6 mb-4">
                     <div class="task-card card">
                         <h5 class="card-header"><a id="read-task-${task.id}" class="btn">${task.title}</a>
-                        <span id="delete-task-${task.id}" class="pull-right clickable close-icon"><i class="fa fa-trash"></i></span>
-                        <span id="edit-task-${task.id}" class="pull-right clickable close-icon mx-2"><i class="fa fa-edit"></i></span>
+                        <span id="delete-task-${task.id}" class="pull-right clickable close-icon" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></span>
+                        <span id="edit-task-${task.id}" class="pull-right clickable close-icon mx-2" data-toggle="tooltip" data-placement="top" title="edit"><i class="fa fa-edit"></i></span>
                         </h5>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
@@ -222,11 +226,11 @@ function fetchData() {
                 })
                 response.duedate.forEach(task => {
                     $('#duedate-list').append(`
-                <div class="col-12 mb-4">
+                <div class="col-6 col-lg-12 mb-4">
                     <div class="card duedate-card">
                         <h5 class="card-header"><a id="read-task-${task.id}" class="btn">${task.title}</a>
-                        <span id="delete-task-${task.id}" class="pull-right clickable close-icon"><i class="fa fa-trash"></i></span>
-                        <span id="edit-task-${task.id}" class="pull-right clickable close-icon mx-2"><i class="fa fa-edit"></i></span>
+                        <span id="delete-task-${task.id}" class="pull-right clickable close-icon" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></span>
+                        <span id="edit-task-${task.id}" class="pull-right clickable close-icon mx-2" data-toggle="tooltip" data-placement="top" title="edit"><i class="fa fa-edit"></i></span>
                         </h5>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">

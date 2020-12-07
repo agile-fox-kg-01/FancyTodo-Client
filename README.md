@@ -1,8 +1,16 @@
 # FancyTodo-Client
 
+  Build with:
+  - HTML
+  - CSS
+  - Jquery
+  - Ajax
+  - firebase
+
   to Run this App:
+  - clone from git
+  - npm install
   - cd public
-  - fill metaGoogle variable in js/main.js with Google Sign CLIENT_ID key
-  - live-server --host=localhost
+  - live-server public --host=localhost
 
   Demo: [Fancy-Todo](https://fancytodoyeay.firebaseapp.com/)

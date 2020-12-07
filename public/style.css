@@ -20,7 +20,15 @@ body {
     padding: 20px 0px;
 }
 
-/* Login Page */
+.clickable {
+    cursor: pointer;
+}
+
+
+/*--------------------------------------------------------------
+# Login and Register Page
+--------------------------------------------------------------*/
+
 .site-register {
     position: absolute;
     height: 100% !important;
@@ -33,6 +41,10 @@ body {
     -o-transition: left 0.3s ease;
     transition: left 0.3s ease;
     z-index: 3;
+}
+
+body.open .site-login {
+    margin-left: 44%;
 }
 
 .site-register.open {
@@ -50,26 +62,80 @@ body {
     transition: margin 0.3s ease;
 }
 
-body.open .site-login {
-    margin-left: 44%;
+
+.site-login .section-title {
+    padding-left: 55px;
 }
 
-@media screen and (max-width: 500px) {
+.site-login .site-login_text h2 {
+    font-size: 35px;
+    font-weight: 500;
+    position: relative;
+    text-transform: capitalize;
+}
+
+.feature_img img {
+    width: 85%;
+    margin-top: 3%;
+}
+
+.confirm-password {
+    margin-top: 36px;
+}
+
+@media screen and (max-width: 992px) {
+    .confirm-password {
+        margin-top: 5px;
+    }
+
+    .login-img {
+        display: none;
+    }
+
     .site-register {
-        width: 60px;
+        position: absolute;
+        height: 100% !important;
+        width: 100%;
+        left: -100%;
+        padding: 30px 25px;
+        -webkit-transition: left 0.3s ease;
+        -moz-transition: left 0.3s ease;
+        -ms-transition: left 0.3s ease;
+        -o-transition: left 0.3s ease;
+        transition: left 0.3s ease;
+        z-index: 3;
     }
-    .site-register.open {
-        width: 50%;
-    }
+
     .site-login {
-        width: calc(100% - 40px);
-        margin-left: 40px;
+        width: 100%;
+        padding: 30px 10px;
+        position: relative;
+        -webkit-transition: margin 0.3s ease;
+        -moz-transition: margin 0.3s ease;
+        -ms-transition: margin 0.3s ease;
+        -o-transition: margin 0.3s ease;
+        transition: margin 0.3s ease;
     }
+    
     body.open .site-login {
-        z-index: -1;
-        margin-left: 40px;
+        margin-left: 100%;
+    }
+    
+    .site-register.open {
+        left: 0;
+    }
+
+    .site-login .site-login_text h2, .site-register h2 {
+        font-size: 28px;
+        margin-bottom: 5px;
+        line-height: 40px;
     }
 }
+
+
+/*--------------------------------------------------------------
+# Content Page
+--------------------------------------------------------------*/
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .section_padding {
@@ -191,48 +257,17 @@ body.open .site-login {
     display: none;
 }
 
-@media (max-width: 588px) {
-    .header-top .lnr {
-        display: block;
-        font-weight: bold;
-        font-size: 16px;
-        color: #fff;
+@media screen and (max-width: 592px) {
+    .icon-header {
+        width: 100px;
     }
-    /* .header-top .text {
-        display: none;
-    } */
 }
-
-/* @media (max-width: 991px) {
-    .header-top {
-        display: none;
-    }
-} */
 
 .top-head-btn {
     background: #3face4;
     padding: 9px 26px;
 }
 
-@media (max-width: 991px) {
-    #mobile-nav-toggle i {
-        color: #3face4 !important;
-    }
-}
-
-@media (max-width: 991px) {
-    .main-menu {
-        height: 100px;
-        line-height: 100px;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-menu {
-        height: 80px;
-        line-height: 80px;
-    }
-}
 
 #header {
     transition: all 0.5s;
@@ -243,25 +278,6 @@ body.open .site-login {
 #header hr {
     margin: 0;
     background: rgba(204, 204, 204, 0.54);
-}
-
-/* @media (max-width: 991px) {
-    #header hr {
-        display: none;
-    }
-} */
-
-#header.header-scrolled {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    transition: all 0.5s;
-    box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
-}
-
-#header.header-scrolled .header-top, #header.header-scrolled hr {
-    display: none;
 }
 
 .weatherShow {
@@ -342,130 +358,3 @@ body.open .site-login {
     margin-bottom: 0;
 }
 
-============================================================================================*/
-/* Start Reservation Area css
-============================================================================================ */
-
-.site-login .section-title {
-    padding-left: 55px;
-}
-
-@media (max-width: 991px) {
-    .site-login .section-title {
-        padding-left: 60px;
-    }
-}
-
-@media (max-width: 767px) {
-    .site-login .section-title {
-        margin-top: 60px;
-    }
-}
-
-/**************** service_part css start ****************/
-
-/* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-
-.site-login {
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 576px) {
-    /* line 21, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .feature_img {
-        margin-bottom: 50px;
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    /* line 21, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .feature_img {
-        padding-left: 0;
-    }
-}
-
-@media (max-width: 576px) {
-    /* line 30, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text {
-        padding-left: 0;
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    /* line 30, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text {
-        padding-left: 0;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    /* line 30, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text {
-        padding-left: 0;
-    }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-    /* line 30, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text {
-        padding-left: 0;
-    }
-}
-
-/* line 47, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-
-.site-login .site-login_text h2 {
-    font-size: 35px;
-    font-weight: 500;
-    position: relative;
-    text-transform: capitalize;
-}
-
-@media (max-width: 576px) {
-    /* line 47, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text h2 {
-        font-size: 25px;
-        margin-bottom: 10px;
-        line-height: 35px;
-        margin-top: 15px;
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    /* line 47, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text h2 {
-        font-size: 25px;
-        margin-bottom: 10px;
-        line-height: 35px;
-        margin-top: 20px;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    /* line 47, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text h2 {
-        font-size: 25px;
-        margin-bottom: 10px;
-        line-height: 35px;
-        margin-top: 20px;
-    }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-    /* line 47, /Applications/MAMP/htdocs/palash/cl/july 2019/189 travel/189 travel html/sass/_feature_part.scss */
-    .site-login .site-login_text h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-        line-height: 40px;
-    }
-}
-
-.feature_img img {
-    width: 85%;
-    margin-top: 3%;
-}
-
-.confirm-password {
-    margin-top: 33px;
-}
