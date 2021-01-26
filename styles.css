@@ -1,0 +1,181 @@
+
+* {
+  margin: 0;
+}
+
+body{
+  font-family: 'Merienda One', cursive;
+  display: inline;
+  margin: 0;
+  text-align: center;
+}
+.home{
+  text-align: center;
+}
+
+nav{ 
+  background-color:#abf0e9;
+  height:70px;
+  align-content: center;
+}
+
+.table{
+  width: 70%;
+  margin-left: 30px;
+}
+
+.nav-link{
+  color:black;
+  font-size:15px;
+}
+
+.form-register{
+  padding: 30px 30px ;
+  width: 400px;
+}
+
+.fas{
+  size:70px ;
+}
+
+footer {
+  background-color:#abf0e9;
+  text-align: center;
+  height: 65px;
+  width: 100%;
+  bottom: 0;
+  padding-top: 20px;
+  position: relative;
+  margin-bottom: 0px;
+}
+footer img {
+  width: 30px;
+  /* display: inline-block; */
+}
+footer p {
+  display: inline;
+}
+
+
+.midContainer {
+  position: relative;
+  display: inline;
+  margin-top: 20px;
+  font-family: 'Kaushan Script', cursive;
+  color: #cf7500;
+  font-size: 30px;
+}
+
+
+
+.image1 {
+  display: inline-block;
+  position: relative;
+  margin-left: 100px;
+  width: 500px;
+  height: 400px;
+
+}
+
+.image2 {
+  display: inline-block;
+  position: relative;
+  margin-left: 115px;
+  margin-right: 0px;
+  width: 500px;
+  height: 400px;
+
+}
+
+header {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 30px;
+}
+
+.greeting {
+  margin-left: 80px;
+  width: 80%;
+}
+
+form{
+  width: 50%;
+  padding: 70px;
+  text-align: left;
+}
+
+span{
+font-size: 15px;
+}
+
+h3{
+  margin-left: 30px;
+}
+
+#weather, h5{
+  text-align: center;
+  color: #cf7500;
+  float: right;
+  padding-left: 320px;
+  padding-top: 5px;
+}
+
+.form-login, .form-register{
+  margin: 80px 450px;
+  background-color: #d4f3ef;
+  border-radius: 25px;
+  width:500px;
+  box-shadow: 10px 10px 5px grey;
+}
+.form-group1{
+  width: 350px;
+  padding-left: 80px;
+}
+
+#btn-sign{
+  margin-left: 180px;
+  margin-top: 20px;
+}
+input[type=text],input[type=password],input[type=email],input[type=date]{
+  border: 1px solid #c3edea;
+  border-radius: 4px;
+}
+
+#table-list{
+  margin-left: 200px;
+  margin-bottom: 100px;
+}
+.jumbotron{
+  margin-bottom: 70px;
+  margin-top: 20px;
+}
+thead{
+  color:#084177;
+  font-size: 17px;
+}
+tbody{
+  font-size: 14px;
+  color:#2a7886;
+}
+
+#formAdd, .editTodoForm{
+  margin-left:400px;
+  size: 300px;
+}
+
+.addInput{
+  width: 400px;
+  height: 50px;
+  border: 1px solid #c3edea;
+  border-radius: 7px;
+  padding: 15px;
+}
+i{
+  font-size: 14px;
+  color:#2a7886;
+}
+
+#book{
+  width:40px;
+}
